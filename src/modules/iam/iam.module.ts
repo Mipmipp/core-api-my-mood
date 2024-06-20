@@ -13,6 +13,7 @@ import { JwtStrategy } from './authentication/infrastructure/strategy/jwt.strate
 import { LocalStrategy } from './authentication/infrastructure/strategy/local.strategy';
 import { AuthenticationController } from './authentication/interface/authentication.controller';
 import { TrackOwnerPolicyHandler } from './authorization/application/policy/track/track-owner.policy';
+import { UserOwnerPolicyHandler } from './authorization/application/policy/user/user-owner.policy';
 import { PoliciesGuard } from './authorization/infrastructure/guard/policies.guard';
 import { PolicyHandlerStorage } from './authorization/infrastructure/storage/policy-handler.storage';
 
@@ -47,6 +48,7 @@ import { PolicyHandlerStorage } from './authorization/infrastructure/storage/pol
     JwtStrategy,
     AuthenticationService,
     TrackOwnerPolicyHandler,
+    UserOwnerPolicyHandler,
     PolicyHandlerStorage,
   ],
 })
