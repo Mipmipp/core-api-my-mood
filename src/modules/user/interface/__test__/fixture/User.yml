@@ -4,3 +4,7 @@ items:
     username: 'john'
     email: 'john.doe@test.com'
     password: 'Password1234!'
+  user2:
+    username: 'jane'
+    email: 'jane.doe@test.com'
+    password: 'Password1234!'
