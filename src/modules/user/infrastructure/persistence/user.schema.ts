@@ -11,11 +11,12 @@ export const UserSchema = new EntitySchema<User>({
   columns: withBaseSchemaColumns({
     username: {
       type: String,
-      unique: true,
+      nullable: false,
     },
     email: {
       type: String,
       unique: true,
+      nullable: false,
     },
     password: {
       type: String,
