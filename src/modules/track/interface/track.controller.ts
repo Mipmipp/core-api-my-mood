@@ -14,6 +14,7 @@ import { Policies } from '@/modules/iam/authorization/infrastructure/decorator/p
 import { TrackService } from '../application/service/track.service';
 import { Track } from '../domain/track.entity';
 import { CreateTrackDto } from './dto/create-track.dto';
+import { GetUserTrackDto } from './dto/get-user-track.dto';
 import { GetUserTracksDto } from './dto/get-user-tracks.dto';
 import { UpdateTrackDto } from './dto/update-track.dto';
 
@@ -27,6 +28,14 @@ export class TrackController {
     @Body() getUserTracksDto: GetUserTracksDto,
   ): Promise<Track[]> {
     return this.trackService.findByUserIdMonthAndYear(getUserTracksDto);
+  }
+
+  @Policies(new TrackOwnerPolicy({ searchParam: 'userId' }))
+  @Get()
+  async findOneByUserIdDayMonthAndYear(
+    @Body() getUserTrackDto: GetUserTrackDto,
+  ): Promise<Track> {
+    return this.trackService.findOneByUserIdDayMonthAndYear(getUserTrackDto);
   }
 
   @Policies(new TrackOwnerPolicy({ searchParam: 'userId' }))
