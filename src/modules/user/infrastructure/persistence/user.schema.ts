@@ -23,4 +23,7 @@ export const UserSchema = new EntitySchema<User>({
       nullable: false,
     },
   }),
+  relations: {
+    tracks: { type: 'one-to-many', target: 'Track', inverseSide: 'user' },
+  },
 });
