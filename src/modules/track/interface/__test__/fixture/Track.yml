@@ -1,0 +1,18 @@
+entity: Track
+items:
+  track1:
+    userId: 1
+    user: '@user1'
+    day: 1
+    month: 1
+    year: 2024
+    mood: 'Happy'
+    note: 'Note 1'
+  track2:
+    userId: 2
+    user: '@user2'
+    day: 2
+    month: 2
+    year: 2024
+    mood: 'Sad'
+    note: 'Note 2'
