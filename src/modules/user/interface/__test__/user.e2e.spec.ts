@@ -54,6 +54,20 @@ describe('User - [/user]', () => {
         .auth(userToken, { type: 'bearer' })
         .expect(HttpStatus.NOT_FOUND);
     });
+
+    it('should not return a user with a foreign email', async () => {
+      return request(app.getHttpServer())
+        .get('/user/jane.doe@test.com')
+        .auth(userToken, { type: 'bearer' })
+        .expect(HttpStatus.FORBIDDEN)
+        .then(({ body }) => {
+          const expectedResponse = expect.objectContaining({
+            message: 'Users cannot manage foreign users.',
+          });
+
+          expect(body).toEqual(expectedResponse);
+        });
+    });
   });
 
   describe('Patch - [PATCH /user/:email]', () => {
@@ -83,6 +97,23 @@ describe('User - [/user]', () => {
           username: 'johnp',
         })
         .expect(HttpStatus.NOT_FOUND);
+    });
+
+    it('should not update a user with a foreign email', async () => {
+      return request(app.getHttpServer())
+        .patch('/user/jane.doe@test.com')
+        .auth(userToken, { type: 'bearer' })
+        .send({
+          username: 'johnp',
+        })
+        .expect(HttpStatus.FORBIDDEN)
+        .then(({ body }) => {
+          const expectedResponse = expect.objectContaining({
+            message: 'Users cannot manage foreign users.',
+          });
+
+          expect(body).toEqual(expectedResponse);
+        });
     });
   });
 });
