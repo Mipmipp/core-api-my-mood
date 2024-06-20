@@ -16,6 +16,20 @@ export class TrackMysqlRepository implements TrackRepository {
     return this.repository.save(track);
   }
 
+  async findByUserIdMonthAndYear(
+    userId: number,
+    month: number,
+    year: number,
+  ): Promise<Track[]> {
+    return this.repository.find({
+      where: {
+        userId,
+        month,
+        year,
+      },
+    });
+  }
+
   async findOneById(id: number): Promise<Track> {
     return this.repository.findOne({ where: { id } });
   }
