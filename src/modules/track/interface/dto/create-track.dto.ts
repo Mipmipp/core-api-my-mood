@@ -1,4 +1,12 @@
-import { IsEnum, IsNumber, IsOptional, IsString } from 'class-validator';
+import {
+  IsEnum,
+  IsNumber,
+  IsOptional,
+  IsString,
+  Max,
+  MaxLength,
+  Min,
+} from 'class-validator';
 
 import { MoodType } from '../../domain/mood.type';
 
@@ -7,12 +15,18 @@ export class CreateTrackDto {
   userId: number;
 
   @IsNumber()
+  @Min(1)
+  @Max(31)
   day: number;
 
   @IsNumber()
+  @Min(1)
+  @Max(12)
   month: number;
 
   @IsNumber()
+  @Min(2024)
+  @Max(2030)
   year: number;
 
   @IsEnum(MoodType)
@@ -20,5 +34,6 @@ export class CreateTrackDto {
 
   @IsOptional()
   @IsString()
+  @MaxLength(150)
   note: string;
 }
