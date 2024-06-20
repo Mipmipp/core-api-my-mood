@@ -40,6 +40,4 @@ data/tests.*.*db
 
 # Docker
 data/mysql/*
-
-# SonarQube
-.scannerwork/*
+ 
