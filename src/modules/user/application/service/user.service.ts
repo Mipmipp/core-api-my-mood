@@ -24,6 +24,10 @@ export class UserQueryService {
     return this.userRepository.create(userToCreate);
   }
 
+  async findOneByEmail(email: string): Promise<User> {
+    return this.userRepository.findOneByEmail(email);
+  }
+
   async findOneByEmailOrFail(email: string): Promise<User> {
     return this.userRepository.findOneByEmailOrFail(email);
   }

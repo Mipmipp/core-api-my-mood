@@ -16,6 +16,12 @@ export class UserMysqlRepository implements UserRepository {
     return this.repository.save(user);
   }
 
+  async findOneByEmail(email: string): Promise<User> {
+    return this.repository.findOne({
+      where: { email },
+    });
+  }
+
   async findOneByEmailOrFail(email: string): Promise<User> {
     const user = await this.repository.findOne({
       where: { email },
