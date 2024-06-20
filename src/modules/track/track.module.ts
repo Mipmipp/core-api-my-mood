@@ -3,8 +3,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { TRACK_REPOSITORY_KEY } from './application/repository/track.repository.interface';
 import { TrackService } from './application/service/track.service';
+import { TrackMysqlRepository } from './infrastructure/persistence/track.mysql.repository';
 import { TrackSchema } from './infrastructure/persistence/track.schema';
-import { TrackMysqlRepository } from './infrastructure/track.mysql.repository';
 import { TrackController } from './interface/track.controller';
 
 @Module({
