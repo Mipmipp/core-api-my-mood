@@ -13,46 +13,13 @@ export const UserSchema = new EntitySchema<User>({
       type: String,
       unique: true,
     },
-    customerId: {
+    email: {
       type: String,
       unique: true,
-      nullable: true,
     },
-    avatarPath: {
+    password: {
       type: String,
-      unique: true,
-      nullable: true,
-    },
-    thumbnailPath: {
-      type: String,
-      unique: true,
-      nullable: true,
-    },
-    authProviderId: {
-      type: String,
-      unique: true,
-      nullable: true,
-    },
-    nickname: {
-      type: String,
-      unique: true,
-      nullable: true,
-    },
-    country: {
-      type: String,
-      nullable: true,
-    },
-    avatar: {
-      type: String,
-      nullable: true,
-    },
-    about: {
-      type: String,
-      nullable: true,
-    },
-    connectAccId: {
-      type: String,
-      nullable: true,
+      nullable: false,
     },
   }),
 });
