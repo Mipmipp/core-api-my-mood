@@ -8,6 +8,9 @@ import {
   Post,
 } from '@nestjs/common';
 
+import { TrackOwnerPolicy } from '@/modules/iam/authorization/application/policy/track/track-owner.policy';
+import { Policies } from '@/modules/iam/authorization/infrastructure/decorator/policies.decorator';
+
 import { TrackService } from '../application/service/track.service';
 import { Track } from '../domain/track.entity';
 import { CreateTrackDto } from './dto/create-track.dto';
@@ -18,6 +21,7 @@ import { UpdateTrackDto } from './dto/update-track.dto';
 export class TrackController {
   constructor(private readonly trackService: TrackService) {}
 
+  @Policies(new TrackOwnerPolicy({ searchParam: 'userId' }))
   @Get('/tracks/filtered')
   async findByUserIdMonthAndYear(
     @Body() getUserTracksDto: GetUserTracksDto,
@@ -25,11 +29,13 @@ export class TrackController {
     return this.trackService.findByUserIdMonthAndYear(getUserTracksDto);
   }
 
+  @Policies(new TrackOwnerPolicy({ searchParam: 'userId' }))
   @Post()
   async create(@Body() createTrackDto: CreateTrackDto): Promise<Track> {
     return this.trackService.create(createTrackDto);
   }
 
+  @Policies(new TrackOwnerPolicy())
   @Patch(':id')
   async updateOrFail(
     @Param('id', ParseIntPipe) id: number,

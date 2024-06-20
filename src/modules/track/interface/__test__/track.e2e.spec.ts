@@ -94,6 +94,7 @@ describe('Track - [/track]', () => {
   describe('Patch - [PATCH /track/:id]', () => {
     it('should update a track', async () => {
       const updateTrackDto: UpdateTrackDto = {
+        userId: 1,
         mood: MoodType.HAPPY,
       };
 
