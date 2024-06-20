@@ -1,0 +1,10 @@
+entity: User
+items:
+  user1:
+    username: 'john'
+    email: 'john.doe@test.com'
+    password: 'Password1234!'
+  user2:
+    username: 'jake'
+    email: 'jake.doe@test.com'
+    password: 'Password1234!'
