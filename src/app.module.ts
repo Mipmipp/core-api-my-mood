@@ -13,6 +13,7 @@ import { CommonModule } from '@common/common.module';
 import { JwtGuard } from './modules/iam/authentication/infrastructure/guard/jwt.guard';
 import { JwtStrategy } from './modules/iam/authentication/infrastructure/strategy/jwt.strategy';
 import { IamModule } from './modules/iam/iam.module';
+import { TrackModule } from './modules/track/track.module';
 import { UserModule } from './modules/user/user.module';
 
 @Module({
@@ -34,6 +35,7 @@ import { UserModule } from './modules/user/user.module';
     CommonModule,
     UserModule,
     IamModule,
+    TrackModule,
   ],
   controllers: [],
   providers: [
