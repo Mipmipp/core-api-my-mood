@@ -23,11 +23,12 @@ export class AuthenticationService {
     authenticationCredentials: AuthenticationCredentials,
   ): Promise<User> {
     const { email, password } = authenticationCredentials;
+    const ERROR_CREDENTIALS_MESSAGE = 'Invalid credentials';
 
     const user = await this.userQueryService.findOneByEmail(email);
 
     if (!user) {
-      throw new BadRequestException('User not found');
+      throw new BadRequestException(ERROR_CREDENTIALS_MESSAGE);
     }
 
     const isMatch = this.authenticationProviderService.validateUser(
@@ -36,7 +37,7 @@ export class AuthenticationService {
     );
 
     if (!isMatch) {
-      throw new BadRequestException('Password does not match');
+      throw new BadRequestException(ERROR_CREDENTIALS_MESSAGE);
     }
 
     return user;
