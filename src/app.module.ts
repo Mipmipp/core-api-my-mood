@@ -10,9 +10,6 @@ import { datasourceOptions } from '@configuration/orm.configuration';
 
 import { CommonModule } from '@common/common.module';
 
-import { AuthorModule } from '@/modules/author/author.module';
-import { BookModule } from '@/modules/book/book.module';
-
 import { JwtGuard } from './modules/iam/authentication/infrastructure/guard/jwt.guard';
 import { JwtStrategy } from './modules/iam/authentication/infrastructure/strategy/jwt.strategy';
 import { IamModule } from './modules/iam/iam.module';
@@ -35,8 +32,6 @@ import { UserModule } from './modules/user/user.module';
       },
     }),
     CommonModule,
-    AuthorModule,
-    BookModule,
     UserModule,
     IamModule,
   ],
