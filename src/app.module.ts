@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
+import { APP_GUARD } from '@nestjs/core';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
 
@@ -9,8 +10,10 @@ import { datasourceOptions } from '@configuration/orm.configuration';
 
 import { CommonModule } from '@common/common.module';
 
-import { AuthorModule } from '@/modules/author/author.module';
-import { BookModule } from '@/modules/book/book.module';
+import { JwtGuard } from './modules/iam/authentication/infrastructure/guard/jwt.guard';
+import { JwtStrategy } from './modules/iam/authentication/infrastructure/strategy/jwt.strategy';
+import { IamModule } from './modules/iam/iam.module';
+import { UserModule } from './modules/user/user.module';
 
 @Module({
   imports: [
@@ -29,10 +32,16 @@ import { BookModule } from '@/modules/book/book.module';
       },
     }),
     CommonModule,
-    AuthorModule,
-    BookModule,
+    UserModule,
+    IamModule,
   ],
   controllers: [],
-  providers: [],
+  providers: [
+    {
+      provide: APP_GUARD,
+      useClass: JwtGuard,
+    },
+    JwtStrategy,
+  ],
 })
 export class AppModule {}

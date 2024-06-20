@@ -3,20 +3,23 @@
 ScaleMote's template for creating API projects.
 
 ## Installation
+
 - Set your node version to at least 16.x
 - Run `npm i` to install dependencies
 - Run `npm run prepare` to install husky precommit hook.
 
 ## How to run
+
 ```
 npm start
-# Runs the app in local. The port is determined by the `PORT` enviroment variable. 
+# Runs the app in local. The port is determined by the `PORT` enviroment variable.
 
 npm run start:dev
 # Runs the app in watch mode. In this mode the app will restart after any change.
 ```
 
 ## Useful commands
+
 ```
 npm run lint
 # Execute eslint in all the project and solves any fixable problem.
@@ -30,6 +33,7 @@ npm run build
 ```
 
 ## Testing
+
 ```
 npm run test
 # Used for run all the jest tests
@@ -39,7 +43,9 @@ npm run test:cov
 ```
 
 ## Migrations
+
 Migrations solve the common problem of having to manually update a local database schema when pulling in changes from source control.
+
 ```
 npm run migrate:create
 # Creates a new migration file in `./data/migrations`.
@@ -55,15 +61,13 @@ npm run migrate:revert
 ```
 
 ## CI/CD
+
 The application implements continuous integration and continuous delivery by integrating with github actions. Current actions include:
+
 - Running eslint and prettier
 - Building the app
 - Running tests with code coverage report generation
 - Reporting the code coverage of any new change.
-- Running Sonarqube scan and quality gate check
-
-
-
 
 ## Motivation
 
@@ -91,7 +95,7 @@ it by it's business function (books, authors, publishers, etc.).
 We choose the latter. All code pertaining a certain business concept should stay together.
 
 | Folder         | Description                                                                                                                                                                                                                                                                                                                                                                     |
-|----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Interface      | The interface folder contains files related to interfacing with a client. Here we can add HTTP controllers or CLI controllers.                                                                                                                                                                                                                                                  |
 | Application    | The application folder contains application logic, for instance DTOs that the Interface layers use, mappers to translate DTOs into entities or vice-versa, a repository folder where we will store the INTERFACE of this repository (the concrete implementation lives in the infrastructure layer) and a service or use-case folder where we connect infrastructure and domain |
 | Domain         | The domain folder contains the enterprise rules, and it does not depend on any other layer. This layer can be TDD'd and unit tested independently of any other layer.                                                                                                                                                                                                           |
@@ -109,8 +113,8 @@ let's see an example:
 ```javascript
 // A controller accessing a repository directly
 
-function getAllUsers (page) {
-  this.userService.getPaginatedResponseDto(this.repository.getAllUsers(page))
+function getAllUsers(page) {
+  this.userService.getPaginatedResponseDto(this.repository.getAllUsers(page));
 }
 ```
 
