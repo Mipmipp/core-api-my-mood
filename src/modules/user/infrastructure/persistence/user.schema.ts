@@ -21,7 +21,6 @@ export const UserSchema = new EntitySchema<User>({
     password: {
       type: String,
       nullable: false,
-      select: false,
     },
   }),
 });
