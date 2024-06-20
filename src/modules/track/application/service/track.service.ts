@@ -1,7 +1,8 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
 
 import { Track } from '../../domain/track.entity';
 import { CreateTrackDto } from '../../interface/dto/create-track.dto';
+import { GetUserTrackDto } from '../../interface/dto/get-user-track.dto';
 import { GetUserTracksDto } from '../../interface/dto/get-user-tracks.dto';
 import { UpdateTrackDto } from '../../interface/dto/update-track.dto';
 import {
@@ -21,9 +22,13 @@ export class TrackService {
   ) {}
 
   async create(createTrackDto: CreateTrackDto): Promise<Track> {
-    const trackMapper = fromCreateTrackDtoToTrack(createTrackDto);
+    try {
+      const trackMapper = fromCreateTrackDtoToTrack(createTrackDto);
 
-    return await this.trackRepository.create(trackMapper);
+      return await this.trackRepository.create(trackMapper);
+    } catch (error) {
+      throw new HttpException(error.message, HttpStatus.CONFLICT);
+    }
   }
 
   async findByUserIdMonthAndYear(
@@ -32,6 +37,19 @@ export class TrackService {
     const { userId, month, year } = getUserTracksDto;
 
     return this.trackRepository.findByUserIdMonthAndYear(userId, month, year);
+  }
+
+  async findOneByUserIdDayMonthAndYear(
+    getUserTrackDto: GetUserTrackDto,
+  ): Promise<Track> {
+    const { userId, day, month, year } = getUserTrackDto;
+
+    return this.trackRepository.findOneByUserIdDayMonthAndYear(
+      userId,
+      day,
+      month,
+      year,
+    );
   }
 
   async findOneById(id: number): Promise<Track> {
