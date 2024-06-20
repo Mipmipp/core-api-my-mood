@@ -2,9 +2,9 @@ import { NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
-import { TrackRepository } from '../application/repository/track.repository.interface';
-import { Track } from '../domain/track.entity';
-import { TrackSchema } from './persistence/track.schema';
+import { TrackRepository } from '../../application/repository/track.repository.interface';
+import { Track } from '../../domain/track.entity';
+import { TrackSchema } from './track.schema';
 
 export class TrackMysqlRepository implements TrackRepository {
   constructor(
