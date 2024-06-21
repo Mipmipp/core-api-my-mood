@@ -6,7 +6,7 @@ import { ExtractJwt, Strategy } from 'passport-jwt';
 import { ENVIRONMENT } from '@/configuration/orm.configuration';
 import { TEST_SECRET } from '@/tests/test.constants';
 
-import { AccessTokenPayload } from '../../application/service/authentication-provider.service.interface';
+import { IAccessTokenPayload } from '../../application/service/authentication-provider.service.interface';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
@@ -27,7 +27,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     super(options);
   }
 
-  async validate(payload: AccessTokenPayload) {
+  async validate(payload: IAccessTokenPayload) {
     return payload;
   }
 }

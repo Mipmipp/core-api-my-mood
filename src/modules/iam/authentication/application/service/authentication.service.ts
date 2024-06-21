@@ -7,15 +7,15 @@ import { AuthenticationCredentials } from '../../interface/dto/authenticationCre
 import { SignUpDto } from '../../interface/dto/sign-up.dto';
 import {
   AUTHENTICATION_PROVIDER_SERVICE_KEY,
-  AccessToken,
-  AuthenticationProviderService,
+  IAccessToken,
+  IAuthenticationProviderService,
 } from './authentication-provider.service.interface';
 
 @Injectable()
 export class AuthenticationService {
   constructor(
     @Inject(AUTHENTICATION_PROVIDER_SERVICE_KEY)
-    private readonly authenticationProviderService: AuthenticationProviderService,
+    private readonly authenticationProviderService: IAuthenticationProviderService,
     private readonly userQueryService: UserQueryService,
   ) {}
 
@@ -43,7 +43,7 @@ export class AuthenticationService {
     return user;
   }
 
-  async signUp(signUpDto: SignUpDto): Promise<AccessToken> {
+  async signUp(signUpDto: SignUpDto): Promise<IAccessToken> {
     const { username, email, password } = signUpDto;
 
     const user = await this.userQueryService.findOneByEmail(email);
@@ -69,7 +69,7 @@ export class AuthenticationService {
 
   async signIn(
     authenticationCredentials: AuthenticationCredentials,
-  ): Promise<AccessToken> {
+  ): Promise<IAccessToken> {
     const accessToken = await this.authenticationProviderService.signIn(
       authenticationCredentials,
     );

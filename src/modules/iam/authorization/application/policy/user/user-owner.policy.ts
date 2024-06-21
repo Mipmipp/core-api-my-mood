@@ -1,15 +1,15 @@
 import { ForbiddenException, Injectable } from '@nestjs/common';
 import { Request } from 'express';
 
-import { AccessTokenPayload } from '@/modules/iam/authentication/application/service/authentication-provider.service.interface';
+import { IAccessTokenPayload } from '@/modules/iam/authentication/application/service/authentication-provider.service.interface';
 import { REQUEST_USER_KEY } from '@/modules/iam/iam.constants';
 import { UserQueryService } from '@/modules/user/application/service/user.service';
 
 import { PolicyHandlerStorage } from '../../../infrastructure/storage/policy-handler.storage';
 import { PolicyHandler } from '../policy-handler.interface';
-import { Policy } from '../policy.interface';
+import { IPolicy } from '../policy.interface';
 
-export class UserOwnerPolicy implements Policy {
+export class UserOwnerPolicy implements IPolicy {
   name = 'UserOwnResource';
   searchParam?: string;
 
@@ -28,7 +28,7 @@ export class UserOwnerPolicyHandler implements PolicyHandler<UserOwnerPolicy> {
   }
 
   async handle(policy: UserOwnerPolicy, request: Request): Promise<void> {
-    const currentUser: AccessTokenPayload = request[REQUEST_USER_KEY];
+    const currentUser: IAccessTokenPayload = request[REQUEST_USER_KEY];
     const currentUserFromDb = await this.userQueryService.findOneByEmailOrFail(
       currentUser.email,
     );

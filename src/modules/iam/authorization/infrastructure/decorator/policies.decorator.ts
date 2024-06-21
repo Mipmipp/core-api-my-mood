@@ -1,8 +1,8 @@
 import { SetMetadata } from '@nestjs/common';
 
-import { Policy } from '../../application/policy/policy.interface';
+import { IPolicy } from '../../application/policy/policy.interface';
 
 export const POLICIES_KEY = 'policies';
 
-export const Policies = (...policies: Policy[]) =>
+export const Policies = (...policies: IPolicy[]) =>
   SetMetadata(POLICIES_KEY, policies);

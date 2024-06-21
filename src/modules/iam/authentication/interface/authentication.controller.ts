@@ -1,7 +1,7 @@
 import { Body, Controller, Post, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 
-import { AccessToken } from '../application/service/authentication-provider.service.interface';
+import { IAccessToken } from '../application/service/authentication-provider.service.interface';
 import { AuthenticationService } from '../application/service/authentication.service';
 import { Public } from '../infrastructure/decorator/public.decorator';
 import { AuthenticationCredentials } from './dto/authenticationCredentials';
@@ -13,7 +13,7 @@ export class AuthenticationController {
 
   @Public()
   @Post('sign-up')
-  async signUp(@Body() signUpDto: SignUpDto): Promise<AccessToken> {
+  async signUp(@Body() signUpDto: SignUpDto): Promise<IAccessToken> {
     return this.authenticationService.signUp(signUpDto);
   }
 
@@ -22,7 +22,7 @@ export class AuthenticationController {
   @Post('sign-in')
   async signIn(
     @Body() authenticationCredentials: AuthenticationCredentials,
-  ): Promise<AccessToken> {
+  ): Promise<IAccessToken> {
     return this.authenticationService.signIn(authenticationCredentials);
   }
 }

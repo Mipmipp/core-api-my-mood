@@ -1,3 +1,3 @@
-export interface Policy {
+export interface IPolicy {
   name: string;
 }

@@ -2,7 +2,7 @@ import { Track } from '../../domain/track.entity';
 
 export const TRACK_REPOSITORY_KEY = 'TRACK_REPOSITORY';
 
-export interface TrackRepository {
+export interface ITrackRepository {
   create(track: Track): Promise<Track>;
   findByUserIdMonthAndYear(
     userId: number,

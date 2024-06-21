@@ -7,7 +7,7 @@ import {
 import { Reflector } from '@nestjs/core';
 import { Request } from 'express';
 
-import { Policy } from '../../application/policy/policy.interface';
+import { IPolicy } from '../../application/policy/policy.interface';
 import { POLICIES_KEY } from '../decorator/policies.decorator';
 import { PolicyHandlerStorage } from '../storage/policy-handler.storage';
 
@@ -42,8 +42,8 @@ export class PoliciesGuard implements CanActivate {
     return true;
   }
 
-  private getPoliciesFromContext(context: ExecutionContext): Policy[] {
-    return this.reflector.getAllAndOverride<Policy[]>(POLICIES_KEY, [
+  private getPoliciesFromContext(context: ExecutionContext): IPolicy[] {
+    return this.reflector.getAllAndOverride<IPolicy[]>(POLICIES_KEY, [
       context.getHandler(),
       context.getClass(),
     ]);
