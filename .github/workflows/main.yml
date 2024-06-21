@@ -13,8 +13,9 @@ env:
   DB_PASSWORD: secret
   DB_NAME: mysql
   PORT: 3000
-  SONAR_SERVER_URL: ${{ secrets.SONAR_HOST_URL }}
-  SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+  JWT_SECRET: test-secret
+  ACCESS_TOKEN_VALIDITY_DURATION_IN_SEC: 1200
+  HASH_SALT: 8
 
 jobs:
   build:
@@ -44,15 +45,3 @@ jobs:
 
       - name: Run Tests
         run: npm run test:cov
-
-      - name: Report LCOV
-        uses: zgosalvez/github-actions-report-lcov@v1
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          coverage-files: ./coverage/lcov.info
-
-      - name: Store coverage folder as artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: coverage
-          path: coverage
