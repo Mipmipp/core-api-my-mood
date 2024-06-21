@@ -1,6 +1,0 @@
-{
-    "sonarlint.connectedMode.project": {
-        "connectionId": "sonar-scalemote",
-        "projectKey": "core-api-docker"
-    }
-}
