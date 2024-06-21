@@ -1,7 +1,7 @@
 import { Request } from 'express';
 
-import { Policy } from './policy.interface';
+import { IPolicy } from './policy.interface';
 
-export interface PolicyHandler<T extends Policy> {
+export interface PolicyHandler<T extends IPolicy> {
   handle(policy: T, request: Request): Promise<void>;
 }

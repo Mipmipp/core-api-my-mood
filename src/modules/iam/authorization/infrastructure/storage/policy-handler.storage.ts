@@ -1,17 +1,17 @@
 import { Injectable, Type } from '@nestjs/common';
 
 import { PolicyHandler } from '../../application/policy/policy-handler.interface';
-import { Policy } from '../../application/policy/policy.interface';
+import { IPolicy } from '../../application/policy/policy.interface';
 
 @Injectable()
 export class PolicyHandlerStorage {
-  private readonly collection = new Map<Type<Policy>, PolicyHandler<any>>();
+  private readonly collection = new Map<Type<IPolicy>, PolicyHandler<any>>();
 
-  add<T extends Policy>(PolicyCls: Type<T>, handler: PolicyHandler<T>) {
+  add<T extends IPolicy>(PolicyCls: Type<T>, handler: PolicyHandler<T>) {
     this.collection.set(PolicyCls, handler);
   }
 
-  get<T extends Policy>(PolicyCls: Type<T>): PolicyHandler<T> | undefined {
+  get<T extends IPolicy>(PolicyCls: Type<T>): PolicyHandler<T> | undefined {
     const handler = this.collection.get(PolicyCls);
 
     if (!handler) {

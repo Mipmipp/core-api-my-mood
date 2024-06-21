@@ -4,15 +4,15 @@ import { User } from '../../domain/user.entity';
 import { UpdateUserDto } from '../../interface/dto/update-user.dto';
 import { UserMapper } from '../mapper/user.mapper';
 import {
+  IUserRepository,
   USER_REPOSITORY_KEY,
-  UserRepository,
 } from '../repository/user.repository.interface';
 
 @Injectable()
 export class UserQueryService {
   constructor(
     @Inject(USER_REPOSITORY_KEY)
-    private readonly userRepository: UserRepository,
+    private readonly userRepository: IUserRepository,
     private readonly userMapper: UserMapper,
   ) {}
 

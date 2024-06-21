@@ -6,12 +6,12 @@ import * as bcrypt from 'bcrypt';
 import { User } from '@/modules/user/domain/user.entity';
 
 import {
-  AccessToken,
-  AuthenticationProviderService,
+  IAccessToken,
+  IAuthenticationProviderService,
 } from '../../application/service/authentication-provider.service.interface';
 
 @Injectable()
-export class PassportService implements AuthenticationProviderService {
+export class PassportService implements IAuthenticationProviderService {
   private readonly hashSalt: number;
   constructor(
     private readonly configService: ConfigService,
@@ -30,7 +30,7 @@ export class PassportService implements AuthenticationProviderService {
     return hashedPassword;
   }
 
-  async signIn(user: User): Promise<AccessToken> {
+  async signIn(user: User): Promise<IAccessToken> {
     const payload = { email: user.email, id: user.id };
 
     return { access_token: this.jwtService.sign(payload) };

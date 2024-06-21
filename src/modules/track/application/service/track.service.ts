@@ -10,15 +10,15 @@ import {
   fromUpdateTrackDtoToTrack,
 } from '../mapper/track.mapper';
 import {
+  ITrackRepository,
   TRACK_REPOSITORY_KEY,
-  TrackRepository,
 } from '../repository/track.repository.interface';
 
 @Injectable()
 export class TrackService {
   constructor(
     @Inject(TRACK_REPOSITORY_KEY)
-    private readonly trackRepository: TrackRepository,
+    private readonly trackRepository: ITrackRepository,
   ) {}
 
   async create(createTrackDto: CreateTrackDto): Promise<Track> {

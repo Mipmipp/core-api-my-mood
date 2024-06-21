@@ -2,11 +2,11 @@ import { NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
-import { UserRepository } from '../../application/repository/user.repository.interface';
+import { IUserRepository } from '../../application/repository/user.repository.interface';
 import { User } from '../../domain/user.entity';
 import { UserSchema } from './user.schema';
 
-export class UserMysqlRepository implements UserRepository {
+export class UserMysqlRepository implements IUserRepository {
   constructor(
     @InjectRepository(UserSchema)
     private readonly repository: Repository<User>,
