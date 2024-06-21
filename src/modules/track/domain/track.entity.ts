@@ -10,6 +10,5 @@ export class Track extends Base {
   month: number;
   year: number;
   mood: MoodType;
-
   note?: string;
 }
