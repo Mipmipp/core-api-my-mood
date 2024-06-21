@@ -55,6 +55,7 @@ export class TrackService {
   async findOneById(id: number): Promise<Track> {
     return this.trackRepository.findOneById(id);
   }
+
   async findOneByIdOrFail(id: number): Promise<Track> {
     return this.trackRepository.findOneByIdOrFail(id);
   }
