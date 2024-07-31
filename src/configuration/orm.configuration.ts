@@ -21,6 +21,7 @@ const production: DataSourceOptions = {
   database: process.env.DB_NAME,
   synchronize: false,
   namingStrategy: new SnakeNamingStrategy(),
+  connectTimeout: 30000,
 };
 
 const staging: DataSourceOptions = {
